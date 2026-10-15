@@ -11,17 +11,17 @@ jobs:
     steps:
       - name: Download docker
         run: |
-          docker pull ntop/ntopng:stable
-          echo "$(docker images ntop/ntopng:stable --format '{{.Size}}')"
+          docker pull ntop/ntopng:latest
+          echo "$(docker images ntop/ntopng:latest --format '{{.Size}}')"
       
       - name: Export to TAR
         run: |
           mkdir -p output
-          docker save ntop/ntopng:stable -o output/ntopng:stable.tar
+          docker save ntop/ntopng:latest -o output/ntopng-latest.tar
           ls -lh output/
       
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ntopng:stable
+          name: ntopng-latest
           path: output/
